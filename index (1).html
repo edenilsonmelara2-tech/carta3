@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09000f">
+
+<title>Para Tatiana ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050008;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ===== FONDO ===== */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    background:
+        radial-gradient(circle at 20% 20%,#65004455,transparent 35%),
+        radial-gradient(circle at 80% 70%,#ff149455,transparent 30%),
+        linear-gradient(135deg,#050008,#160016,#050008);
+}
+
+.glow{
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:#ff168866;
+    filter:blur(100px);
+    animation:moveGlow 8s infinite alternate;
+    z-index:-4;
+}
+
+.glow.one{
+    top:-100px;
+    left:-100px;
+}
+
+.glow.two{
+    right:-120px;
+    bottom:-100px;
+    background:#9d00ff66;
+    animation-delay:2s;
+}
+
+@keyframes moveGlow{
+    from{transform:translate(0,0);}
+    to{transform:translate(100px,80px);}
+}
+
+/* ===== ESTRELLAS ===== */
+
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-3;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.2;transform:scale(.6);}
+    to{opacity:1;transform:scale(1.4);}
+}
+
+/* ===== PANTALLA INICIAL ===== */
+
+.intro{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+    text-align:center;
+}
+
+.intro-card{
+    width:100%;
+    max-width:480px;
+    padding:45px 25px;
+    border:1px solid #ffffff22;
+    border-radius:30px;
+    background:#ffffff0c;
+    backdrop-filter:blur(18px);
+    box-shadow:0 0 60px #ff008833;
+    animation:appear 1.5s ease;
+}
+
+.small{
+    color:#ff9cdb;
+    letter-spacing:3px;
+    font-size:12px;
+    text-transform:uppercase;
+}
+
+.intro h1{
+    font-size:45px;
+    margin:15px 0;
+    background:linear-gradient(90deg,#fff,#ff9ddd,#fff);
+    background-size:200%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:shine 3s infinite;
+}
+
+@keyframes shine{
+    to{background-position:200%;}
+}
+
+.intro p{
+    color:#ddd;
+    line-height:1.7;
+}
+
+.heart-big{
+    font-size:70px;
+    animation:heartbeat 1.3s infinite;
+}
+
+@keyframes heartbeat{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.18);}
+}
+
+.open-btn{
+    margin-top:25px;
+    padding:15px 35px;
+    border:0;
+    border-radius:50px;
+    color:white;
+    background:linear-gradient(90deg,#ff1688,#9c27ff);
+    font-size:16px;
+    font-weight:bold;
+    box-shadow:0 0 30px #ff168877;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.open-btn:active{
+    transform:scale(.92);
+}
+
+/* ===== CONTENIDO ===== */
+
+#content{
+    display:none;
+}
+
+section{
+    min-height:100vh;
+    padding:80px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    width:100%;
+    max-width:800px;
+    text-align:center;
+}
+
+/* ===== TITULOS ===== */
+
+.section-title{
+    font-size:35px;
+    margin-bottom:20px;
+    background:linear-gradient(90deg,#fff,#ff8dcc,#fff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.subtitle{
+    color:#bbb;
+    line-height:1.7;
+}
+
+/* ===== CARTA ===== */
+
+.letter{
+    margin-top:35px;
+    padding:35px 25px;
+    border-radius:25px;
+    background:linear-gradient(145deg,#ffffff12,#ffffff05);
+    border:1px solid #ffffff18;
+    backdrop-filter:blur(15px);
+    box-shadow:0 20px 70px #00000066;
+    text-align:left;
+    animation:appear 1.5s ease;
+}
+
+.letter p{
+    color:#eee;
+    line-height:1.9;
+    margin-bottom:20px;
+}
+
+.highlight{
+    color:#ff91d2;
+    font-weight:bold;
+}
+
+/* ===== FOTOS ===== */
+
+.gallery{
+    margin-top:35px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.photo{
+    height:220px;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid #ffffff22;
+    background:#ffffff0c;
+    box-shadow:0 10px 40px #00000055;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.photo img:hover{
+    transform:scale(1.08);
+}
+
+/* ===== CONTADOR ===== */
+
+.counter{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.time-box{
+    padding:20px 5px;
+    border-radius:18px;
+    background:#ffffff0d;
+    border:1px solid #ffffff18;
+}
+
+.time-box strong{
+    display:block;
+    font-size:25px;
+    color:#ff9bd6;
+}
+
+.time-box span{
+    font-size:11px;
+    color:#aaa;
+}
+
+/* ===== FRASE ===== */
+
+.quote{
+    margin-top:30px;
+    padding:35px 20px;
+    border-radius:25px;
+    background:linear-gradient(135deg,#ff168822,#9c27ff22);
+    border:1px solid #ffffff18;
+}
+
+.quote p{
+    font-size:24px;
+    line-height:1.5;
+    font-style:italic;
+}
+
+/* ===== BOTÓN MÚSICA ===== */
+
+.music{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:1px solid #ffffff33;
+    background:#ff1688cc;
+    color:white;
+    font-size:22px;
+    z-index:50;
+    box-shadow:0 0 25px #ff168877;
+}
+
+/* ===== CORAZONES ===== */
+
+.floating-heart{
+    position:fixed;
+    bottom:-40px;
+    pointer-events:none;
+    animation:floatUp linear forwards;
+    z-index:10;
+}
+
+@keyframes floatUp{
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* ===== FINAL ===== */
+
+.final{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.final h2{
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.final-heart{
+    font-size:80px;
+    animation:heartbeat 1.2s infinite;
+}
+
+.footer{
+    color:#777;
+    font-size:12px;
+    padding-bottom:30px;
+}
+
+/* ===== ANIMACIÓN ===== */
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ===== CELULAR ===== */
+
+@media(max-width:500px){
+
+    .intro h1{
+        font-size:38px;
+    }
+
+    .section-title{
+        font-size:30px;
+    }
+
+    .gallery{
+        grid-template-columns:1fr;
+    }
+
+    .photo{
+        height:250px;
+    }
+
+    .counter{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .quote p{
+        font-size:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="glow one"></div>
+<div class="glow two"></div>
+
+<div class="stars" id="stars"></div>
+
+<!-- ===== INTRO ===== -->
+
+<section class="intro" id="intro">
+
+<div class="intro-card">
+
+<div class="heart-big">❤️</div>
+
+<div class="small">Una pequeña sorpresa</div>
+
+<h1>Para la mujer mas hermosa y bella💗</h1>
+
+<p>
+Hay cosas que no se pueden explicar fácilmente...
+por eso hice esto para usted.
+</p>
+
+<button class="open-btn" onclick="openLetter()">
+💌 Abrir mi carta
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ===== CONTENIDO ===== -->
+
+<div id="content">
+
+<section>
+
+<div class="container">
+
+<div class="small">Para la persona que amo</div>
+
+<h2 class="section-title">
+Usted es especial ❤️
+</h2>
+
+<p class="subtitle">
+No hice esta página para presumirla...
+la hice porque quería crear un pequeño lugar
+que fuera solamente para usted.
+</p>
+
+<div class="letter">
+
+<p>
+ <span class="highlight">mi amor</span> ❤️
+</p>
+
+<p>
+Quiero que sepa que usted se convirtió en alguien
+muy importante para mí. Hay momentos que quizá
+parezcan pequeños, pero para mí significan muchísimo.
+</p>
+
+<p>
+Me gusta poder compartir momentos con usted,
+reírnos, hablar de cualquier tontería y simplemente
+saber que está ahí.
+</p>
+
+<p>
+No le prometo una historia perfecta,
+porque ninguna relación lo es.
+Pero sí quiero seguir creando recuerdos,
+seguir aprendiendo y seguir cuidando
+lo que tenemos.
+</p>
+
+<p>
+Gracias por cada sonrisa, cada conversación,
+cada momento y cada recuerdo.
+</p>
+
+<p>
+Y si algún día se pregunta cuánto la quiero...
+probablemente tendría que hacer otra página
+porque esta no me alcanza jeje :)
+</p>
+
+<p>
+<span class="highlight">
+La quiero muchísimo. ❤️
+</span>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===== GALERÍA ===== -->
+
+<section>
+
+<div class="container">
+
+<div class="small">Nuestros recuerdos</div>
+
+<h2 class="section-title">
+Momentos que quiero guardar 📸
+</h2>
+
+<p class="subtitle">
+NO LE PUSE NINGUNA FOTO PORQUE NO SUPE COMO SE HACIA JIJIJI.
+</p>
+
+<div class="gallery">
+
+<div class="photo">
+<img src="https://placehold.co/600x700/21001f/ffffff?text=Foto+1">
+</div>
+
+<div class="photo">
+<img src="https://placehold.co/600x700/310025/ffffff?text=Foto+2">
+</div>
+
+<div class="photo">
+<img src="https://placehold.co/600x700/24002d/ffffff?text=Foto+3">
+</div>
+
+<div class="photo">
+<img src="https://placehold.co/600x700/190020/ffffff?text=Foto+4">
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===== CONTADOR ===== -->
+
+<section>
+
+<div class="container">
+
+<div class="small">Nuestro tiempo</div>
+
+<h2 class="section-title">
+Cada momento cuenta ⏳
+</h2>
+
+<p class="subtitle">
+Desde que comenzamos esta historia...
+</p>
+
+<div class="counter">
+
+<div class="time-box">
+<strong id="days">0</strong>
+<span>DÍAS</span>
+</div>
+
+<div class="time-box">
+<strong id="hours">0</strong>
+<span>HORAS</span>
+</div>
+
+<div class="time-box">
+<strong id="minutes">0</strong>
+<span>MINUTOS</span>
+</div>
+
+<div class="time-box">
+<strong id="seconds">0</strong>
+<span>SEGUNDOS</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===== FRASE ===== -->
+
+<section>
+
+<div class="container">
+
+<div class="quote">
+
+<p>
+“De todas las casualidades bonitas
+que pudieron pasarme,
+me alegra que usted haya sido una de ellas.” ❤️
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===== FINAL ===== -->
+
+<section class="final">
+
+<div class="container">
+
+<div class="final-heart">💗</div>
+
+<h2>
+la quiero mucho mi niña y jamas la voy a dejar de querer :3
+</h2>
+
+<p class="subtitle">
+Y esta pequeña página siempre tendrá
+un lugar para usted.
+</p>
+
+<br>
+
+<p class="footer">
+Hecho con ❤️ especialmente para usted.
+</p>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- ===== BOTÓN MÚSICA ===== -->
+
+<button class="music" onclick="toggleMusic()" id="musicButton">
+🎵
+</button>
+
+<audio id="music" loop>
+<source
+src="cancion.mp3"
+type="audio/mpeg"
+</audio>
+
+
+<script>
+
+/* ===== ESTRELLAS ===== */
+
+const stars = document.getElementById("stars");
+
+for(let i=0;i<100;i++){
+
+    const star = document.createElement("div");
+
+    star.className="star";
+
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+
+    star.style.animationDelay=
+        Math.random()*3+"s";
+
+    stars.appendChild(star);
+}
+
+
+/* ===== ABRIR CARTA ===== */
+
+function openLetter(){
+
+    document.getElementById("intro").style.display="none";
+
+    document.getElementById("content").style.display="block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+    createHearts();
+
+}
+
+
+/* ===== CORAZONES ===== */
+
+function createHearts(){
+
+    for(let i=0;i<35;i++){
+
+        setTimeout(()=>{
+
+            const heart =
+                document.createElement("div");
+
+            heart.className="floating-heart";
+
+            const emojis=["❤️","💗","💖","💕","💘"];
+
+            heart.innerHTML=
+                emojis[Math.floor(Math.random()*emojis.length)];
+
+            heart.style.left=
+                Math.random()*100+"vw";
+
+            heart.style.fontSize=
+                (15+Math.random()*25)+"px";
+
+            heart.style.animationDuration=
+                (4+Math.random()*4)+"s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(()=>{
+                heart.remove();
+            },8000);
+
+        },i*120);
+
+    }
+}
+
+
+/* ===== CONTADOR ===== */
+
+/*
+CAMBIE ESTA FECHA POR LA FECHA
+EN LA QUE COMENZARON SU RELACIÓN.
+
+FORMATO:
+AÑO, MES-1, DÍA
+
+Ejemplo:
+new Date(2026, 3, 12)
+= 12 de abril de 2026
+*/
+
+const startDate =
+new Date(2025,10,13);
+
+
+function updateCounter(){
+
+    const now=new Date();
+
+    let difference=
+        now-startDate;
+
+    if(difference<0)
+        difference=0;
+
+    const seconds=
+        Math.floor(difference/1000);
+
+    const days=
+        Math.floor(seconds/86400);
+
+    const hours=
+        Math.floor((seconds%86400)/3600);
+
+    const minutes=
+        Math.floor((seconds%3600)/60);
+
+    const secs=
+        seconds%60;
+
+    document.getElementById("days")
+        .textContent=days;
+
+    document.getElementById("hours")
+        .textContent=hours;
+
+    document.getElementById("minutes")
+        .textContent=minutes;
+
+    document.getElementById("seconds")
+        .textContent=secs;
+}
+
+setInterval(updateCounter,1000);
+
+updateCounter();
+
+
+/* ===== MÚSICA ===== */
+
+const music=
+document.getElementById("music");
+
+let playing=false;
+
+function toggleMusic(){
+
+    if(!music.src){
+
+        alert(
+        "Primero coloque el enlace de una canción en el elemento audio."
+        );
+
+        return;
+    }
+
+    if(playing){
+
+        music.pause();
+
+        document.getElementById("musicButton")
+            .textContent="🎵";
+
+        playing=false;
+
+    }else{
+
+        music.play();
+
+        document.getElementById("musicButton")
+            .textContent="⏸️";
+
+        playing=true;
+    }
+}
+
+
+/* ===== CORAZONES CADA CIERTO TIEMPO ===== */
+
+setInterval(()=>{
+
+    if(
+        document.getElementById("content")
+        .style.display==="block"
+    ){
+
+        const heart=
+            document.createElement("div");
+
+        heart.className="floating-heart";
+
+        heart.innerHTML="💗";
+
+        heart.style.left=
+            Math.random()*100+"vw";
+
+        heart.style.fontSize="20px";
+
+        heart.style.animationDuration="6s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },6000);
+    }
+
+},1200);
+
+</script>
+
+</body>
+</html>
